@@ -1,7 +1,7 @@
 import pandas as pd
 import ta
 
-class pSAR:
+class Parabolic_SAR:
     def __init__(self):
 
         self.Name = 'pSAR'

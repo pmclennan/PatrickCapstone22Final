@@ -38,19 +38,24 @@ delimitter = None #Required from knowledge of the dataset. Another example could
 
 ###Trading Strategiies Import
 ##Basic
+from TradingStrategies.Basic.Bollinger_Bands import Bollinger_Bands
 from TradingStrategies.Basic.MACD_Crossover import MACD_Crossover
+from TradingStrategies.Basic.Commodity_Channel_Index import Commodity_Channel_Index
+from TradingStrategies.Basic.Parabolic_SAR import Parabolic_SAR
+from TradingStrategies.Basic.Stochastic_Oscilator import Stochastic_Oscilator
 
 ##Combination
-from TradingStrategies.Combination.pSAR_SO import pSAR_SO
+#TODO
 
 ##Patterns
+#TODO
 
 ##Remaining Static inputs
 inputRows = 50
 limits = [20]
 #stop_loss = -10
 #take_profit = 20
-strategies = [MACD_Crossover]
+strategies = [Bollinger_Bands, MACD_Crossover, Commodity_Channel_Index, Parabolic_SAR, Stochastic_Oscilator]
 one_pip = 0.0001
 guaranteed_sl = False
 broker_cost = 2*one_pip
