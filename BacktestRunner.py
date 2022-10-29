@@ -211,10 +211,10 @@ class BacktestRunner:
 
             #Show progress
             if index % (round(0.01 * len(self.data), 0)) == 0:
-                print("Backtest Progress: {}% as at date: {} | PnL: {} pips | Total Trades: {}".format(\
+                print("----- Backtest Progress: {}% as at date: {} | PnL: {} pips | Total Trades: {} -----".format(\
                     round(100 * (index/len(self.data))), row['time'].strftime("%Y-%m-%d %H:%M"), round(self.broker.total_profit * 10000, 0), self.broker.trades_total), \
                         end = "\r", flush = True)
-
+                        
         endTime = time.time()
         print("\nTimeConsumed: {}".format(datetime.timedelta(seconds = endTime - startTime)))
 
