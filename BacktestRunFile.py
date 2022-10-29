@@ -52,7 +52,7 @@ from TradingStrategies.Basic.Stochastic_Oscilator import Stochastic_Oscilator
 
 ##Remaining Static inputs
 inputRows = 50
-limits = [20]
+limits = [15]
 #stop_loss = -10
 #take_profit = 20
 strategies = [Bollinger_Bands, MACD_Crossover, Commodity_Channel_Index, Parabolic_SAR, Stochastic_Oscilator]
