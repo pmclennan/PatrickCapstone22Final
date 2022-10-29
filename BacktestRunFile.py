@@ -68,6 +68,7 @@ runType = 1 #Pertains to how the objects are called (different for DL strategies
 #But it still works on just a single limit level or strategy, ie have the lists as just one element.
 
 for strategy in strategies:
+    print("Running for strategy: ", strategy().Name)
     for limit in limits:
         stop_loss = -limit * one_pip 
         take_profit = limit * one_pip 
