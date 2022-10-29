@@ -26,7 +26,7 @@ from BacktestRunner import BacktestRunner
 tz = pytz.utc
 startDate = datetime.datetime(2021, 10, 13, tzinfo = tz) #Start Date - adjust as necessary
 endDate = datetime.datetime(2022, 9, 4, tzinfo = tz) #End Date - adjust as necessary
-dataFolder = os.path.join(os.getcwd(), 'ExampleDatasets', 'OHLC_BidAsk')
+dataFolder = os.path.join(os.getcwd(), 'Datasets', 'OHLC_BidAsk')
 dataFilename = "EURUSD.a_M5_14102021_02092022.csv"
 dataDir = os.path.join(dataFolder, dataFilename)
 timeCols = 'DATETIME' #Required from knowledge of the dataset. Another example (From MT5 export) is ['DATE', 'TIME']
