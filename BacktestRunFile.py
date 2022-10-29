@@ -36,9 +36,14 @@ delimitter = None #Required from knowledge of the dataset. Another example could
 #data = pd.read_csv(yourDataDir)
 #Other data formatting code.
 
-##Trading Strategiies Import
-from TradingStrategies.MACD_Crossover import MACD_Crossover
-from TradingStrategies.pSAR_SO import pSAR_SO
+###Trading Strategiies Import
+##Basic
+from TradingStrategies.Basic.MACD_Crossover import MACD_Crossover
+
+##Combination
+from TradingStrategies.Combination.pSAR_SO import pSAR_SO
+
+##Patterns
 
 ##Remaining Static inputs
 inputRows = 50
