@@ -17,14 +17,15 @@ class Parabolic_SAR:
     def determine_signal(self):
 
         action = 0
-        self.pSAR = self.df['pSAR']
+        pSAR = self.df['pSAR']
+        close = self.df['close']
 
         #Sell Criteria - current pSAR above close, previous pSAR below close
-        if self.pSAR.iloc[-1] > self.close.iloc[-1] and self.pSAR.iloc[-2] < self.close.iloc[-2]:
+        if pSAR.iloc[-1] > close.iloc[-1] and pSAR.iloc[-2] < close.iloc[-2]:
             action = -1
 
         #Buy Criteria - current pSAR below close, previous pSAR above close
-        elif self.pSAR.iloc[-1] < self.close.iloc[-1] and self.pSAR.iloc[-2] > self.close.iloc[-2]:
+        elif pSAR.iloc[-1] < close.iloc[-1] and pSAR.iloc[-2] > close.iloc[-2]:
             action = 1
 
         return action
