@@ -18,10 +18,7 @@ class Bollinger_Bands:
 
     def calculate_BB(self):
         self.df['BBHigh'] = ta.volatility.BollingerBands(self.df['close']).bollinger_hband()
-        self.df['BBMid'] = ta.volatility.BollingerBands(self.df['close']).bollinger_mavg()
         self.df['BBLow'] = ta.volatility.BollingerBands(self.df['close']).bollinger_lband()
-        self.df['BBRange'] = self.df['BBHigh'] - self.df['BBLow']
-        self.df['BBRange5MA'] = self.df['BBRange'].rolling(5).mean()
 
     def determine_signal(self):
         # sell = -1, hold = 0, buy = 1, initialise all as hold first
@@ -31,31 +28,23 @@ class Bollinger_Bands:
         low = self.df['low']
         BBHigh = self.df['BBHigh']
         BBLow = self.df['BBLow']
-        BBRange = self.df['BBRange']
-        BBRange5MA = self.df['BBRange5MA']
 
-        #Buy Signal:
-        # if high price touches high BB, and BBRange > BBRangeMA T-1 (breakout)
-        # if low price touches low BB, and BBRange <= BBRangeMA T-1 (retractment)
+        #Buy Signal - high price touches high BB
 
-        if (high.iloc[-1] >= BBHigh.iloc[-1] and BBRange.iloc[-1] > BBRange5MA.iloc[-2]) or \
-            (low.iloc[-1] <= BBLow.iloc[-1] and BBRange.iloc[-1] <= BBRange5MA.iloc[-2]):
+        if high.iloc[-1] >= BBHigh.iloc[-1]:
             
             action = 1
 
-        #Sell Signal:
-        # if low price touches low BB, and BBRange > BBRangeMA (breakout)
-        # if high price touches high BB, and BBRange <= BBRangeMA (retractment)
+        #Sell Signal - low price touches low BB
 
-        if (low.iloc[-1] <= BBLow.iloc[-1] and BBRange.iloc[-1] > BBRange5MA.iloc[-2]) or \
-            (high.iloc[-1] >= BBHigh.iloc[-1] and BBRange.iloc[-1] <= BBRange5MA.iloc[-2]):
+        if low.iloc[-1] <- BBLow.iloc[-1]:
 
             action = -1
 
         return action
 
     def addIndicatorDf(self):
-        self.indicatorDf = self.df[['time', 'BBHigh', 'BBMid', 'BBLow', 'BBRange', 'BBRange5MA']]
+        self.indicatorDf = self.df[['time', 'BBHigh', 'BBLow']]
 
     def run(self, data):
         self.addData(data)
