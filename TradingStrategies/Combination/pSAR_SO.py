@@ -1,6 +1,6 @@
 import pandas as pd
 import ta
-from .IndicatorFunctions.StochasticOscilator import StochasticOscilator
+from TradingStrategies.IndicatorFunctions.StochasticOscilator import StochasticOscilator
 
 class pSAR_SO:
     def __init__(self):
