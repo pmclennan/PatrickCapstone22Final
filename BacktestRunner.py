@@ -233,11 +233,12 @@ class BacktestRunner:
             self.currency, self.frequencyStr, self.startDate.date(), self.endDate.date()))
         if suffix is not None:
             childDir = childDir + "_" + str(suffix)
-        try:            
-            childDir = self.strategy().Name + "_" + childDir
+        try:
+            try:
+                childDir = self.strategy().Name + "_" + childDir
+            except:
+                childDir = self.strategy.Name + "_" + childDir
         except:
-            childDir = self.strategy.Name + "_" + childDir
-        finally:
             print("Unavailable to obtain strategy name. Perhaps review structure of strategy class.")
 
         subfolder = os.path.join(self.exportParentFolder, childDir)
