@@ -1,26 +1,26 @@
-RNN_10_M1_Predictor
+GRU_10_M1_Predictor
 Architecture Info
-Model: "sequential"
+Model: "sequential_1"
 _________________________________________________________________
  Layer (type)                Output Shape              Param #   
 =================================================================
- simple_rnn (SimpleRNN)      (None, 120)               15000     
+ gru (GRU)                   (None, 120)               45360     
                                                                  
- dense (Dense)               (None, 64)                7744      
+ dense_4 (Dense)             (None, 64)                7744      
                                                                  
- dense_1 (Dense)             (None, 32)                2080      
+ dense_5 (Dense)             (None, 32)                2080      
                                                                  
- dense_2 (Dense)             (None, 8)                 264       
+ dense_6 (Dense)             (None, 8)                 264       
                                                                  
- dense_3 (Dense)             (None, 1)                 9         
+ dense_7 (Dense)             (None, 1)                 9         
                                                                  
 =================================================================
-Total params: 25,097
-Trainable params: 25,097
+Total params: 55,457
+Trainable params: 55,457
 Non-trainable params: 0
 _________________________________________________________________
-RMSE: 0.051
-MAPE: 0.0399
-Time Trained: 3056.0s
+RMSE: 0.0548
+MAPE: 0.043
+Time Trained: 833.0s
 Trained on: EURUSD.a_M1_201709040000_202109031210.csv
 Steps ahead prediction: 10

@@ -1,4 +1,4 @@
-RNN_10_M1_Predictor
+RNN_10_M5_Predictor
 Architecture Info
 Model: "sequential"
 _________________________________________________________________
@@ -19,8 +19,8 @@ Total params: 25,097
 Trainable params: 25,097
 Non-trainable params: 0
 _________________________________________________________________
-RMSE: 0.051
-MAPE: 0.0399
-Time Trained: 3056.0s
-Trained on: EURUSD.a_M1_201709040000_202109031210.csv
+RMSE: 0.0502
+MAPE: 0.0392
+Time Trained: 605.0s
+Trained on: EURUSD.a_M5_201709040000_202109031210.csv
 Steps ahead prediction: 10

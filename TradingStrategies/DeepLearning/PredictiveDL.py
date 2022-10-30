@@ -5,6 +5,7 @@ class PredictiveDL:
     def __init__(self, model):
         self.model = model
         self.sequence_length = self.model.input_shape[1]
+        self.Name = model.layers[0].__class__.__name__ + "_PredictiveDL"
 
     def add_data(self, data):
         self.data = data
