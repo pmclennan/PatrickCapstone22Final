@@ -1,5 +1,6 @@
 import pandas as pd
 import ta
+pd.set_option('mode.chained_assignment', None)
 
 class Bollinger_Bands:
 
@@ -11,10 +12,6 @@ class Bollinger_Bands:
     def addData(self, data):
         
         self.df = data
-        self.open = self.df["open"]
-        self.high = self.df["high"]
-        self.low = self.df["low"]
-        self.close = self.df["close"]
 
     def calculate_BB(self):
         self.df['BBHigh'] = ta.volatility.BollingerBands(self.df['close']).bollinger_hband()
