@@ -139,7 +139,6 @@ class BacktestRunner:
         brokerCost (float): Flat cost of broker in absolute value, not pips.        
         """
 
-
         self.broker = self.broker(stopLoss, takeProfit, guaranteedSl, brokerCost, self.data, self.currency, self.frequencyStr, \
             self.startDate, self.endDate, self.storeIndicators)
     
@@ -152,10 +151,11 @@ class BacktestRunner:
             and charting indicator strategies that require instantiation in a different style:
         
             1 - standard indicator strategy. Can return indicatorDF.
-            2 - Deep Learning - requires model/scaler upon instantiation before input into backtest (otherwise timely), and an indicator strategy class as input. 
+            2 - Deep Learning - requires model upon instantiation before input into backtest (otherwise timely), and an indicator strategy class as input. 
                 Cannot return indicator DF
             3 - Charting - requires preliminary data upon instantiation before input into backtest. Can return indicatorDF. At this stage only set up/useful with ZigZag/ABCD.
         '''
+
         startTime = time.time()
         index = 0
         signal = 0
@@ -233,10 +233,11 @@ class BacktestRunner:
             self.currency, self.frequencyStr, self.startDate.date(), self.endDate.date()))
         if suffix is not None:
             childDir = childDir + "_" + str(suffix)
-        try:
-            if hasattr(self.strategy(), 'Name'):
-                childDir = self.strategy().Name + "_" + childDir
+        try:            
+            childDir = self.strategy().Name + "_" + childDir
         except:
+            childDir = self.strategy.Name + "_" + childDir
+        finally:
             print("Unavailable to obtain strategy name. Perhaps review structure of strategy class.")
 
         subfolder = os.path.join(self.exportParentFolder, childDir)
