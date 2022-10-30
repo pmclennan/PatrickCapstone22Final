@@ -254,8 +254,7 @@ class signalHandler:
             NB these are both substituted as Close price in the backtest if not bid/ask available.
         index (int): The index to store this trade in reference to the history data.
 
-        TODO: consider the updateLimits method. This can be enabled to widen limits if a stronger signal is received.
-        
+        TODO: consider the updateLimits method. This can be enabled to widen limits if a stronger signal is received.        
         """
         
         PL = 0 #Reset at the trade
@@ -272,8 +271,8 @@ class signalHandler:
 
         elif self.prev_traded_position == 1:
             # Reciving a stroger buy signal
-            #self.updateLimits(self.original_stop_loss, self.original_take_profit, ask_price, index) 
-            self.checkStopConditions(bid_price, ask_price, index) #Disregard for now, as we've just updated limits.
+            #self.updateLimits(self.original_stop_loss, self.original_take_profit, ask_price, index) #Switched this off.
+            self.checkStopConditions(bid_price, ask_price, index) 
 
         elif self.prev_traded_position == -1:
             self.current_action = "close short"
@@ -296,8 +295,7 @@ class signalHandler:
             NB these are both substituted as Close price in the backtest if not bid/ask available.
         index (int): The index to store this trade in reference to the history data.
 
-        TODO: consider the updateLimits method. This can be enabled to widen limits if a stronger signal is received.
-        
+        TODO: consider the updateLimits method. This can be enabled to widen limits if a stronger signal is received.        
         """        
         
         PL = 0 # <----- Default for if currently holding
@@ -315,7 +313,7 @@ class signalHandler:
         elif self.prev_traded_position == -1:
             # Reciving a stroger sell signal, 
             #self.updateLimits(self.original_stop_loss, self.original_take_profit, bid_price, index) #Switched this off.
-            self.checkStopConditions(bid_price, ask_price ,index) #Disregard for now, as we've just updated limits.
+            self.checkStopConditions(bid_price, ask_price ,index) 
         
         elif self.prev_traded_position == 1:
             self.current_action = "close long"
@@ -339,8 +337,8 @@ class signalHandler:
 
         Returns:
         self.total_profit (float): The current total profit at this index.
-
         """
+
         PL = 0
         self.current_action = "hold"
         
