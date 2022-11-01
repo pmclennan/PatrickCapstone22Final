@@ -50,7 +50,7 @@ class ABCDStrategyWriter:
         #Given the condition based on Bar after C.
         #This current bar/ZigZag point will get picked up on the next bar process anyway.
 
-        if self.ZigZagData['ZigZag Type'].iloc[-1] != 'valley' or self.ZigZagData['ZigZag Type'].iloc[-1] != 'peak':
+        if self.ZigZagData['ZigZag Type'].iloc[-1] != 'valley' and self.ZigZagData['ZigZag Type'].iloc[-1] != 'peak':
             
             #DownTrend
             if self.ZigZagData['ZigZag Type'].iloc[-2] == 'valley':
