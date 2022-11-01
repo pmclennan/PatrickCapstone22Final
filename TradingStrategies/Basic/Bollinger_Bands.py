@@ -34,7 +34,7 @@ class Bollinger_Bands:
 
         #Sell Signal - low price touches low BB
 
-        if low.iloc[-1] <- BBLow.iloc[-1]:
+        if low.iloc[-1] <= BBLow.iloc[-1]:
 
             action = -1
 
