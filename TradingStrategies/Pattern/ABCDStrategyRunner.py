@@ -5,10 +5,10 @@ import datetime
 import pytz
 
 sys.path.append(os.getcwd())
-from trading_strategies.ZigZagWriter import ZigZagWriter
-from trading_strategies.ABCDStrategyWriter import ABCDStrategy
+from TradingStrategies.Pattern.ZigZagWriter import ZigZagWriter
+from TradingStrategies.Pattern.ABCDStrategyWriter import ABCDStrategyWriter
 
-class ZigZagABCD:
+class ABCDStrategyRunner:
     def __init__(self, ABCDThreshMean = 1.61, ABCDThreshVar = 0.05):
         self.ZigZagObject = ZigZagWriter()
         self.ABCDThreshMean = ABCDThreshMean
@@ -24,7 +24,7 @@ class ZigZagABCD:
     def run(self, data):        
         self.ZigZagDat = self.ZigZagObject.run(data, 1)
         self.addIndicators(data)
-        ABCDStrat = ABCDStrategy(self.ZigZagDat, self.ABCDThreshMean, self.ABCDThreshVar)
+        ABCDStrat = ABCDStrategyWriter(self.ZigZagDat, self.ABCDThreshMean, self.ABCDThreshVar)
         signal = ABCDStrat.run()
 
         return signal, self.indicatorDF

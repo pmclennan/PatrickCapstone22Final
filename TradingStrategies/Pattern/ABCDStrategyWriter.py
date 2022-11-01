@@ -6,9 +6,8 @@ import datetime
 import pytz
 
 sys.path.append(os.getcwd())
-from trading_strategies.ZigZagWriter import ZigZagWriter
 
-class ABCDStrategy:
+class ABCDStrategyWriter:
     def __init__(self, ZigZagData, threshMean = 1.61, threshVar = 0.05):
 
         self.ZigZagData = ZigZagData        
