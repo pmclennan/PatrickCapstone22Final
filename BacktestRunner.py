@@ -234,7 +234,7 @@ class BacktestRunner:
         if suffix is not None:
             childDir = childDir + "_" + str(suffix)
         try:
-            try:            
+            try:
                 childDir = self.strategy().Name + "_" + childDir
             except:
                 childDir = self.strategy.Name + "_" + childDir
