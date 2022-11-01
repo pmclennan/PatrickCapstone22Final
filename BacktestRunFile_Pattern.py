@@ -39,7 +39,7 @@ ZigZagDatFolder = os.path.join(os.getcwd(), 'Datasets', 'ZigZagPrelim')
 ZigZagDatFilename = "MT5ZigZagDatEURUSD.a_M5_02012019_0005-14102021_1710.csv"
 ZigZagDatDir = os.path.join(ZigZagDatFolder, ZigZagDatFilename)
 ZigZagDat = pd.read_csv(ZigZagDatDir, sep = '\t', encoding = 'UTF-16', parse_dates = ['time'])
-renameDict = {'ZigZag(12,5,3) buffer 0': 'ZigZagValue', 'ZigZag(12,5,3) buffer 1': 'MaxBuffer', 'ZigZag(12,5,3) buffer 2': 'MinBuffer'}
+renameDict = {'ZigZag(12,5,3) buffer 0': 'ZigZag Value', 'ZigZag(12,5,3) buffer 1': 'HighMapBuffer', 'ZigZag(12,5,3) buffer 2': 'LowMapBuffer'}
 ZigZagDat.rename(columns = renameDict, inplace = True)
 ZigZagDat['time'] = ZigZagDat['time'].dt.tz_localize(tz = pytz.utc)
 
@@ -47,8 +47,8 @@ ZigZagDat['time'] = ZigZagDat['time'].dt.tz_localize(tz = pytz.utc)
 ABCDStrat = ABCDStrategyRunner()
 
 ##Remaining Static inputs
-inputRows = 50
-limits = [15]
+inputRows = 1 #REQURIED AS 1 FOR ZIGZAG
+limits = [10]
 #stop_loss = -10
 #take_profit = 20
 strategies = [ABCDStrat]
