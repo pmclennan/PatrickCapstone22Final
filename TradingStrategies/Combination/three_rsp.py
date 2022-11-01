@@ -1,6 +1,6 @@
 import pandas as pd
 import ta
-from .IndicatorFunctions.StochasticOscilatorPM import StochasticOscilator
+from TradingStrategies.IndicatorFunctions.StochasticOscilator import StochasticOscilator
 
 class ThreeRSP:
     def __init__(self):
