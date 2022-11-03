@@ -67,9 +67,7 @@ class MACDStochasticCrossover:
 
     def run(self, data):
         self.addData(data)
-        self.add_macd_line()
-        self.add_macd_signal()
+        self.calculate_MACD()
         self.calculate_SO()
-
         self.addIndicatorDf()
         return self.determine_signal(), self.indicatorDf
