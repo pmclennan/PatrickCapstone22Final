@@ -13,9 +13,6 @@ class DC_CCI:
 
     def addData(self, data):
         self.df = data
-        self.high = self.df['high']
-        self.low = self.df['low']
-        self.close = self.df['close']
 
         self.df['CCI'] = [0] * len(self.df)
         self.df['D_UC'] = [0] * len(self.df)
