@@ -16,7 +16,8 @@ def BacktestHistoryFixup(HistoryDat):
             fixedHistory.loc[fixedHistory['action'] == 'buy', 'Take Profit'] = fixedHistory.loc[fixedHistory['action'] == 'buy', 'Take Profit'] + fixedHistory.loc[fixedHistory['action'] == 'buy', 'Executed price']
             return fixedHistory
     else:
-        raise Exception ("SOMETHING WEIRD!")
+        print("SOMETHING WEIRD!")
+        return None
 
 parentFolder = os.path.join(os.getcwd(), 'BacktestResults')
 
@@ -26,5 +27,6 @@ for root, dirs, files in os.walk(parentFolder):
             fileDir = os.path.join(root, name)
             fileDf = pd.read_csv(fileDir)
             cleanedFile = BacktestHistoryFixup(fileDf)
-            cleanedFile.to_csv(fileDir, index = False)
-            print("Cleaned File: " + root.split("\\")[-1])
+            if cleanedFile is not None:
+                cleanedFile.to_csv(fileDir, index = False)
+                print("Cleaned File: " + root.split("\\")[-1])
