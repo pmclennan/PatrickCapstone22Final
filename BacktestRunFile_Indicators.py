@@ -43,8 +43,9 @@ endDate = datetime.datetime(2022, 9, 3, tzinfo = tz) #End Date - adjust as neces
 dataFolder = os.path.join(os.getcwd(), 'Datasets', 'OHLC_BidAsk')
 dataFilename = "EURUSD.a_M5_14102021_02092022.csv"
 dataDir = os.path.join(dataFolder, dataFilename)
-timeCols = 'DATETIME' #Required from knowledge of the dataset. Another example (From MT5 export) is ['DATE', 'TIME']
-delimitter = None #Required from knowledge of the dataset. Another example could be "\t"
+timeCols = ['<DATE>', '<TIME>'] #Required from knowledge of the dataset. Another example (From MT5 export) is ['DATE', 'TIME']
+delimitter = "\t" #Required from knowledge of the dataset. Another example could be "\t"
+
 
 ##Data read - method 2
 #data = pd.read_csv(yourDataDir)
