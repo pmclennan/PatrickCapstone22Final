@@ -265,7 +265,7 @@ class signalHandler:
             self.stop_loss_px = self.prev_traded_price + self.stop_loss
             self.stop_loss_px_list[index] = self.stop_loss_px
             self.take_profit_px = self.prev_traded_price + self.take_profit
-            self.take_profit_px_list[index] = self.take_profit
+            self.take_profit_px_list[index] = self.take_profit_px
             self.saveStats(PL,index)
             self.store_executed_price(bid_price, ask_price, index)
 
