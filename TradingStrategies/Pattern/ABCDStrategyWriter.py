@@ -26,19 +26,22 @@ class ABCDStrategyWriter:
         Bpx = BPoint['ZigZag Value']
         Cpx = CPoint['ZigZag Value']    
 
-        AB_BC_diff = (abs(Bpx - Apx))/(abs(Cpx - Bpx))
-
         signal = 0
 
-        if (self.threshMean - self.threshVar <= AB_BC_diff <= self.threshMean + self.threshVar):
+        if (abs(Bpx - Apx)) != (abs(Cpx - Bpx)):
+            
+            AB_BC_diff = (abs(Bpx - Apx))/(abs(Cpx - Bpx))
 
-            if direction == 'Up' and (Apx < Cpx < Bpx) and Cpx < self.ZigZagData.loc[CPoint.name + 1, 'low']:
+            
+            if (self.threshMean - self.threshVar <= AB_BC_diff <= self.threshMean + self.threshVar):
 
-                signal = 1
+                if direction == 'Up' and (Apx < Cpx < Bpx) and Cpx < self.ZigZagData.loc[CPoint.name + 1, 'low']:
 
-            elif direction == 'Down' and (Apx > Cpx > Bpx) and Cpx > self.ZigZagData.loc[CPoint.name + 1, 'high']:
-                
-                signal = -1
+                    signal = 1
+
+                elif direction == 'Down' and (Apx > Cpx > Bpx) and Cpx > self.ZigZagData.loc[CPoint.name + 1, 'high']:
+                    
+                    signal = -1
             
         return signal
 
