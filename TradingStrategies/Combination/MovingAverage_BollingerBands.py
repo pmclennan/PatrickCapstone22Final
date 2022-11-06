@@ -43,24 +43,42 @@ class MA_BB:
         BB_BBGap = self.BB_BBGap
         MADiff = ShortMA - LongMA
         MACrossover = np.sign(MADiff).diff().ne(0)
+        CrossoverIdx = np.where(MACrossover)[0][-1]
 
-        #Strategy is based on a crossover, hitting one side of the BB a few times then sticking to the other side
-        #E.g. MA crossover, hits High BB shortly after then sticks to Low BB -> Short
+        #Strategy is based on a crossover occuring near where the price flips between the bollinger bands 
+        #E.g. MA crossover, hits High BB shortly (at least two bars) after then sticks to Low BB (at least 2 bars) -> Short
 
-        #Buy - Hit BBHigh, recently hit a crossover and hit BBLow between that
-        if all(high.iloc[-2:] >= BBHigh.iloc[-2:]) and any(MACrossover.iloc[-MA_BBGap:-3]):
-            CrossoverIdx = np.where(MACrossover)[0][-1]
-            if any(low.iloc[max(len(self.df) - BB_BBGap-3, CrossoverIdx):-3] <= BBLow.iloc[max(len(self.df) - BB_BBGap-3, CrossoverIdx):-3]):
+        if len(self.df) - CrossoverIdx <= MA_BBGap and \
+            ((len(self.df) - CrossoverIdx <= 1) or \
+                (high.iloc[-1] >= BBHigh.iloc[-1]) or \
+                    (low.iloc[-1] <= BBLow.iloc[-1])):
             
-                action = 1
+            for i in range(10):
+                #Buy - Only look at this if hit a crossover or touching BB
+                if (high.iloc[-1] >= BBHigh.iloc[-1]) or (len(self.df) - CrossoverIdx <= 1): 
+                    #Now check is there is a pattern of 2 highs hitting high BB
+                    if all(high.iloc[-i-2:len(high)-i] >= BBHigh.iloc[-i-2:len(BBHigh)-i]):
+                        #And prior to that, 2 lows hitting low BB
+                        for j in range(i+1, i+11):
+                            if all(low.iloc[-j-2:-j] <= BBLow.iloc[-j-2:-j]): 
 
-
-        #Sell - Hit BBLow, recently hit BBHigh and hit crossover before that
-        elif all(low.iloc[-2:] <= BBLow.iloc[-2:]) and any(MACrossover.iloc[-MA_BBGap:-3]):
-            CrossoverIdx = np.where(MACrossover)[0][-1]
-            if any(high.iloc[max(len(self.df) - BB_BBGap-3, CrossoverIdx):-3] >= BBHigh.iloc[max(len(self.df) - BB_BBGap-3, CrossoverIdx):-3]):
+                                action = 1
+                                break
+                
+                if action != 0:
+                    break
             
-                action = -1
+                #Likewise for sell
+                elif (low.iloc[-1] <= BBLow.iloc[-1]) or (len(self.df) - CrossoverIdx <= 1):
+                    if all(low.iloc[-i-2:len(low)-i] <= BBLow.iloc[-i-2:len(BBLow)-i]):
+                        for j in range(i+1, i+11):
+                            if all(high.iloc[-j-2:-j] >= BBHigh.iloc[-j-2:-j]):
+
+                                action = -1
+                                break      
+                    
+                    if action != 0:
+                        break
 
         return action
 
