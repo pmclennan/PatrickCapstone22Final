@@ -77,8 +77,8 @@ class MA_BB:
                                 action = -1
                                 break      
                     
-                    if action != 0:
-                        break
+                if action != 0:
+                    break
 
         return action
 
