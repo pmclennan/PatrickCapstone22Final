@@ -1,5 +1,6 @@
 import pandas as pd 
 import numpy as np
+pd.set_option('mode.chained_assignment', None)
 
 class SignalAffirmerDL:
     def __init__(self, model, indicatorStrategy):
@@ -30,13 +31,17 @@ class SignalAffirmerDL:
     def add_indicator(self):
         #Indicator strategy now adds indicators to DF naturally.
         self.inputData = self.data.drop(columns = 'time')
+        self.inputData['Signal'] = [0] * (len(self.inputData)-1) + [self.indicatorSignal]
 
     def scale_input(self):
         
         #Row-wise Scaling
-        rowMax = self.input_sequence.max(axis = 1)
-        rowMin = self.input_sequence.min(axis = 1)
-        self.input_sequence_scaled = (self.input_sequence - rowMin[:, np.newaxis]) / (rowMax[:, np.newaxis] - rowMin[:, np.newaxis])
+        signalInd = self.input_sequence.shape[2]-1
+        rowMax = self.input_sequence[:, :, 0:signalInd].max(axis = 1)
+        rowMin = self.input_sequence[:, :, 0:signalInd].min(axis = 1)
+
+        self.input_sequence_scaled = self.input_sequence
+        self.input_sequence_scaled[:, :, 0:signalInd] = (self.input_sequence_scaled[:, :, 0:signalInd] - rowMin[:, np.newaxis]) / (rowMax[:, np.newaxis] - rowMin[:, np.newaxis])
         self.input_sequence_scaled = np.reshape(self.input_sequence_scaled, (1, self.input_sequence_scaled[-1].shape[0], self.input_sequence_scaled[-1].shape[1]))        
                     
     def determine_signal(self):
