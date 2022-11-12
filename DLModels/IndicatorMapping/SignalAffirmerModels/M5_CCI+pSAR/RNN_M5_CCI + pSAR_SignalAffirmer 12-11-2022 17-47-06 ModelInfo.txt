@@ -1,0 +1,35 @@
+RNN_M5_CCI + pSAR_SignalAffirmer
+Architecture Info
+Model: "sequential"
+_________________________________________________________________
+ Layer (type)                Output Shape              Param #   
+=================================================================
+ simple_rnn (SimpleRNN)      (None, 64)                4608      
+                                                                 
+ dense (Dense)               (None, 32)                2080      
+                                                                 
+ dropout (Dropout)           (None, 32)                0         
+                                                                 
+ dense_1 (Dense)             (None, 10)                330       
+                                                                 
+ dropout_1 (Dropout)         (None, 10)                0         
+                                                                 
+ dense_2 (Dense)             (None, 1)                 11        
+                                                                 
+=================================================================
+Total params: 7,029
+Trainable params: 7,029
+Non-trainable params: 0
+_________________________________________________________________
+Accuracy: 0.5524
+Precision: 0.2494
+Recall: 0.3619
+Time Trained: 139.0s
+Trained on: CCI_EURUSD.a_M5__2017-09-04_to_2021-09-03_15Limit_Mapped_wpSAR.csv
+Incorrect Trade Reduction: 61.9%
+Correct Trade Reduction: 63.81%
+Confusion Matrix 
+          Predicted 0  Predicted 1
+Actual 0         1467          903
+Actual 1          529          300
+Sequence Length: 120
