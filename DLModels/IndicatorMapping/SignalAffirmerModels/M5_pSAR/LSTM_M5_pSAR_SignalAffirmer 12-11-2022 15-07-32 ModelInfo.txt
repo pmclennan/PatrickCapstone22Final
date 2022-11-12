@@ -1,0 +1,35 @@
+LSTM_M5_pSAR_SignalAffirmer
+Architecture Info
+Model: "sequential_1"
+_________________________________________________________________
+ Layer (type)                Output Shape              Param #   
+=================================================================
+ lstm (LSTM)                 (None, 64)                18176     
+                                                                 
+ dense_3 (Dense)             (None, 32)                2080      
+                                                                 
+ dropout_2 (Dropout)         (None, 32)                0         
+                                                                 
+ dense_4 (Dense)             (None, 10)                330       
+                                                                 
+ dropout_3 (Dropout)         (None, 10)                0         
+                                                                 
+ dense_5 (Dense)             (None, 1)                 11        
+                                                                 
+=================================================================
+Total params: 20,597
+Trainable params: 20,597
+Non-trainable params: 0
+_________________________________________________________________
+Accuracy: 0.5106
+Precision: 0.2792
+Recall: 0.5291
+Time Trained: 43.0s
+Trained on: pSAR_301022-143321_EURUSD.a_M5__2017-09-04_to_2021-09-03_15Limit_Mapped.csv
+Incorrect Trade Reduction: 50.38%
+Correct Trade Reduction: 47.09%
+Confusion Matrix 
+          Predicted 0  Predicted 1
+Actual 0         1311         1291
+Actual 1          445          500
+Sequence Length: 120
