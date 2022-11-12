@@ -1,0 +1,31 @@
+RNN_M5_CCI_SignalAffirmer
+Architecture Info
+Model: "sequential"
+_________________________________________________________________
+ Layer (type)                Output Shape              Param #   
+=================================================================
+ simple_rnn (SimpleRNN)      (None, 64)                4544      
+                                                                 
+ dense (Dense)               (None, 10)                650       
+                                                                 
+ dropout (Dropout)           (None, 10)                0         
+                                                                 
+ dense_1 (Dense)             (None, 1)                 11        
+                                                                 
+=================================================================
+Total params: 5,205
+Trainable params: 5,205
+Non-trainable params: 0
+_________________________________________________________________
+Accuracy: 0.3148
+Precision: 0.2579
+Recall: 0.8758
+Time Trained: 143.0s
+Trained on: CCI_301022-123427_EURUSD.a_M5__2017-09-04_to_2021-09-03_15Limit_Mapped.csv
+Incorrect Trade Reduction: 11.86%
+Correct Trade Reduction: 12.42%
+Confusion Matrix 
+          Predicted 0  Predicted 1
+Actual 0          281         2089
+Actual 1          103          726
+Sequence Length: 120

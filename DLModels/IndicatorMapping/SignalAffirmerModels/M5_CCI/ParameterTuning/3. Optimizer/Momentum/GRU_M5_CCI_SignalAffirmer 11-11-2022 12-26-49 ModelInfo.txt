@@ -1,0 +1,35 @@
+GRU_M5_CCI_SignalAffirmer
+Architecture Info
+Model: "sequential_5"
+_________________________________________________________________
+ Layer (type)                Output Shape              Param #   
+=================================================================
+ gru (GRU)                   (None, 64)                13824     
+                                                                 
+ dense_15 (Dense)            (None, 32)                2080      
+                                                                 
+ dropout_10 (Dropout)        (None, 32)                0         
+                                                                 
+ dense_16 (Dense)            (None, 10)                330       
+                                                                 
+ dropout_11 (Dropout)        (None, 10)                0         
+                                                                 
+ dense_17 (Dense)            (None, 1)                 11        
+                                                                 
+=================================================================
+Total params: 16,245
+Trainable params: 16,245
+Non-trainable params: 0
+_________________________________________________________________
+Accuracy: 0.4852
+Precision: 0.2681
+Recall: 0.5706
+Time Trained: 23.0s
+Trained on: CCI_301022-123427_EURUSD.a_M5__2017-09-04_to_2021-09-03_15Limit_Mapped.csv
+Incorrect Trade Reduction: 45.53%
+Correct Trade Reduction: 42.94%
+Confusion Matrix 
+          Predicted 0  Predicted 1
+Actual 0         1079         1291
+Actual 1          356          473
+Sequence Length120
