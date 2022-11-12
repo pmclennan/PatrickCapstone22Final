@@ -8,7 +8,7 @@ class SignalAffirmerDL:
         self.model = model
         self.indicatorStrategyClass = indicatorStrategy
         self.sequence_length = self.model.input_shape[1]
-        self.extraIndicators = extraIndicators
+        self.extraIndicators = list(extraIndicators)
         if extraIndicators is None:
             self.Name = model.layers[0].__class__.__name__ + "_" + indicatorStrategy().Name + "_SignalAffirmerDL"
         else:
