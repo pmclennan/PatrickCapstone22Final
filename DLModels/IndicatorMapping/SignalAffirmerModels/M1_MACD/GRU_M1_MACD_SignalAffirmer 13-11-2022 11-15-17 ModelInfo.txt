@@ -1,0 +1,35 @@
+GRU_M1_MACD_SignalAffirmer
+Architecture Info
+Model: "sequential_2"
+_________________________________________________________________
+ Layer (type)                Output Shape              Param #   
+=================================================================
+ gru (GRU)                   (None, 64)                14016     
+                                                                 
+ dense_6 (Dense)             (None, 32)                2080      
+                                                                 
+ dropout_4 (Dropout)         (None, 32)                0         
+                                                                 
+ dense_7 (Dense)             (None, 10)                330       
+                                                                 
+ dropout_5 (Dropout)         (None, 10)                0         
+                                                                 
+ dense_8 (Dense)             (None, 1)                 11        
+                                                                 
+=================================================================
+Total params: 16,437
+Trainable params: 16,437
+Non-trainable params: 0
+_________________________________________________________________
+Accuracy: 0.5297
+Precision: 0.3969
+Recall: 0.6221
+Time Trained: 46.0s
+Trained on: MACDCrossover_311022-063244_EURUSD.a_M1__2017-09-04_to_2021-09-03_15Limit_Mapped.csv
+Incorrect Trade Reduction: 47.87%
+Correct Trade Reduction: 37.79%
+Confusion Matrix 
+          Predicted 0  Predicted 1
+Actual 0         2047         2229
+Actual 1          891         1467
+Sequence Length: 120
