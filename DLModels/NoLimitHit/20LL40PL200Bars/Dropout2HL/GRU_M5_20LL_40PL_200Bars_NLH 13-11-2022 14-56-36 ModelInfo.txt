@@ -1,0 +1,41 @@
+GRU_M5_20LL_40PL_200Bars_NLH
+Architecture Info
+Model: "sequential_46"
+_________________________________________________________________
+ Layer (type)                Output Shape              Param #   
+=================================================================
+ gru_6 (GRU)                 (None, 120, 32)           3840      
+                                                                 
+ time_distributed_26 (TimeDi  (None, 120, 32)          1056      
+ stributed)                                                      
+                                                                 
+ time_distributed_27 (TimeDi  (None, 120, 32)          0         
+ stributed)                                                      
+                                                                 
+ time_distributed_28 (TimeDi  (None, 120, 10)          330       
+ stributed)                                                      
+                                                                 
+ time_distributed_29 (TimeDi  (None, 120, 10)          0         
+ stributed)                                                      
+                                                                 
+ flatten_12 (Flatten)        (None, 1200)              0         
+                                                                 
+ dense_78 (Dense)            (None, 3)                 3603      
+                                                                 
+=================================================================
+Total params: 8,829
+Trainable params: 8,829
+Non-trainable params: 0
+_________________________________________________________________
+Accuracy: 0.6069
+Precision: 0.6069
+Recall: 0.6069
+Time Trained: 221.0s
+Trained on: EURUSD.a_M5_201709040000_202109031210NLH20_200.csv
+Confusion Matrix 
+           Predicted -1  Predicted 0  Predicted 1
+Actual -1             0        14253            0
+Actual 0              0        45226            0
+Actual 1              0        15038            0
+Sequence Length: 120
+Features: open, high, low, close, HO, CL

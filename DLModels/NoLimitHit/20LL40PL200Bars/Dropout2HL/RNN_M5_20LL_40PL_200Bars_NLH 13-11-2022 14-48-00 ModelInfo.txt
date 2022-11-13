@@ -1,0 +1,41 @@
+RNN_M5_20LL_40PL_200Bars_NLH
+Architecture Info
+Model: "sequential_44"
+_________________________________________________________________
+ Layer (type)                Output Shape              Param #   
+=================================================================
+ simple_rnn_3 (SimpleRNN)    (None, 120, 32)           1248      
+                                                                 
+ time_distributed_18 (TimeDi  (None, 120, 32)          1056      
+ stributed)                                                      
+                                                                 
+ time_distributed_19 (TimeDi  (None, 120, 32)          0         
+ stributed)                                                      
+                                                                 
+ time_distributed_20 (TimeDi  (None, 120, 10)          330       
+ stributed)                                                      
+                                                                 
+ time_distributed_21 (TimeDi  (None, 120, 10)          0         
+ stributed)                                                      
+                                                                 
+ flatten_10 (Flatten)        (None, 1200)              0         
+                                                                 
+ dense_72 (Dense)            (None, 3)                 3603      
+                                                                 
+=================================================================
+Total params: 6,237
+Trainable params: 6,237
+Non-trainable params: 0
+_________________________________________________________________
+Accuracy: 0.2529
+Precision: 0.2529
+Recall: 0.2529
+Time Trained: 1530.0s
+Trained on: EURUSD.a_M5_201709040000_202109031210NLH20_200.csv
+Confusion Matrix 
+           Predicted -1  Predicted 0  Predicted 1
+Actual -1          4820         1769         7664
+Actual 0          15753         6221        23252
+Actual 1           5585         1649         7804
+Sequence Length: 120
+Features: open, high, low, close, HO, CL
