@@ -37,19 +37,21 @@ class NoLimitHitDL:
             if 'pSARClose' in self.indicatorList:
                 self.data['pSARClose'] = self.data['pSAR'] - self.data['close']
 
-        if 'DC' in self.indicatorList:
+        if 'D_UC' in self.indicatorList and 'D_LC' in self.indicatorList:
             self.data['D_UC'], self.data['D_LC'] = [0] * len(self.data), [0] * len(self.data)
             DC_periods = 20
             for i in range(DC_periods, len(self.data)):
                 self.data['D_UC'].iloc[i-1] = max(self.data['high'].iloc[i-DC_periods:i])
                 self.data['D_LC'].iloc[i-1] = min(self.data['low'].iloc[i-DC_periods:i])
 
-        if 'BB' in self.indicatorList:
+        if 'BBHigh' in self.indicatorList:
             self.data['BBHigh'] = ta.volatility.BollingerBands(self.data['close']).bollinger_hband()
-            self.data['BBLow'] = ta.volatility.BollingerBands(self.data['close']).bollinger_lband()    
-
+            
             if 'HBBH' in self.indicatorList:
-                self.data['HBBH'] = self.data['high'] - self.data['BBHigh']
+                self.data['HBBH'] = self.data['high'] - self.data['BBHigh']            
+
+        if 'BBLow' in self.indicatorList:
+            self.data['BBLow'] = ta.volatility.BollingerBands(self.data['close']).bollinger_lband()    
 
             if 'LBBL' in self.indicatorList:
                 self.data['LBBL'] = self.data['low'] - self.data['BBLow']
