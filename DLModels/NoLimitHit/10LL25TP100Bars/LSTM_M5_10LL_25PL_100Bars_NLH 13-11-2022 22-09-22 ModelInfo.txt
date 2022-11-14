@@ -1,0 +1,32 @@
+LSTM_M5_10LL_25PL_100Bars_NLH
+Architecture Info
+Model: "sequential"
+_________________________________________________________________
+ Layer (type)                Output Shape              Param #   
+=================================================================
+ lstm (LSTM)                 (None, 120, 32)           5760      
+                                                                 
+ time_distributed (TimeDistr  (None, 120, 32)          1056      
+ ibuted)                                                         
+                                                                 
+ flatten (Flatten)           (None, 3840)              0         
+                                                                 
+ dense_1 (Dense)             (None, 3)                 11523     
+                                                                 
+=================================================================
+Total params: 18,339
+Trainable params: 18,339
+Non-trainable params: 0
+_________________________________________________________________
+Accuracy: 0.4343
+Precision: 0.4343
+Recall: 0.4343
+Time Trained: 218.0s
+Trained on: EURUSD.a_M5_201709040000_202109031210NLH10SL_100Bars.csv
+Confusion Matrix 
+           Predicted -1  Predicted 0  Predicted 1
+Actual -1          5025         3817         4514
+Actual 0          12900        22717        11574
+Actual 1           5259         4090         4621
+Sequence Length: 120
+Features: open, high, low, close, CCI, pSAR, D_UC, D_LC, BBHigh, BBLow, HO, CL

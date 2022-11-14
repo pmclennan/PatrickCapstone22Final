@@ -1,0 +1,32 @@
+RNN_M5_20LL_30PL_50Bars_NLH
+Architecture Info
+Model: "sequential"
+_________________________________________________________________
+ Layer (type)                Output Shape              Param #   
+=================================================================
+ simple_rnn (SimpleRNN)      (None, 120, 32)           1248      
+                                                                 
+ time_distributed (TimeDistr  (None, 120, 32)          1056      
+ ibuted)                                                         
+                                                                 
+ flatten (Flatten)           (None, 3840)              0         
+                                                                 
+ dense_1 (Dense)             (None, 3)                 11523     
+                                                                 
+=================================================================
+Total params: 13,827
+Trainable params: 13,827
+Non-trainable params: 0
+_________________________________________________________________
+Accuracy: 0.5306
+Precision: 0.5306
+Recall: 0.5306
+Time Trained: 1540.0s
+Trained on: EURUSD.a_M5_201709040000_202109031210NLH20SL_50Bars.csv
+Confusion Matrix 
+           Predicted -1  Predicted 0  Predicted 1
+Actual -1          2926         1452         1621
+Actual 0          17432        34942        10751
+Actual 1           2680         1046         1667
+Sequence Length: 120
+Features: open, high, low, close, HO, CL
