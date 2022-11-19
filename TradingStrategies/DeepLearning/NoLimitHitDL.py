@@ -26,7 +26,11 @@ class NoLimitHitDL:
         self.input_sequence = X  
 
     def add_indicator(self):
-        #Add here given the possible combinations   
+        #Add here given the possible combinations
+
+        #This is done to ensure columns follow the order of the passed indicator list.
+        #Important to have aligned correctly as per user input to follow the training structure.
+        colOrder = list(self.data.columns) + self.indicatorList
 
         if 'CCI' in self.indicatorList:
             self.data['CCI'] = ta.trend.CCIIndicator(self.data['high'], self.data['low'], self.data['close'], window = 14).cci()
@@ -61,6 +65,12 @@ class NoLimitHitDL:
 
         if 'CL' in self.indicatorList:
             self.data['CL'] = self.data['close'] - self.data['low']
+
+        if 'RSI' in self.indicatorList:
+            self.data['RSI'] = ta.momentum.RSIIndicator(self.data['close']).rsi()
+
+        #Re-arrange the columns
+        self.data = self.data[colOrder]
 
         self.inputData = self.data.drop(columns = 'time')
 
