@@ -4,17 +4,17 @@ import ta
 pd.set_option('mode.chained_assignment', None)
 
 class SignalAffirmerDL:
-    def __init__(self, model, indicatorStrategy, extraIndicators = None):
+    def __init__(self, model, indicatorStrategy, indicatorList = None):
         self.model = model
         self.indicatorStrategyClass = indicatorStrategy
         self.sequence_length = self.model.input_shape[1]
-        self.extraIndicators = extraIndicators
+        self.indicatorList = indicatorList
 
-        if self.extraIndicators is None:
+        if self.indicatorList is None:
             self.Name = model.layers[0].__class__.__name__ + "_" + indicatorStrategy().Name + "_SignalAffirmerDL"
         else:
-            self.extraIndicators = list(self.extraIndicators)
-            extraIndicatorString = ("+").join(self.extraIndicators)
+            self.indicatorList = list(self.indicatorList)
+            extraIndicatorString = ("+").join(self.indicatorList)
             self.Name = model.layers[0].__class__.__name__ + "_" + indicatorStrategy().Name + "+" + extraIndicatorString + "_SignalAffirmerDL"
     
     def add_data(self, data):
@@ -43,27 +43,46 @@ class SignalAffirmerDL:
 
     def add_extra_indicators(self):
 
-        if 'CCI' in self.extraIndicators:
+        if 'CCI' in self.indicatorList:
             self.inputData['CCI'] = ta.trend.CCIIndicator(self.inputData['high'], self.inputData['low'], self.inputData['close'], window = 14).cci()
 
-        if 'pSAR' in self.extraIndicators:
+        if 'pSAR' in self.indicatorList:
             self.inputData["pSAR"] = ta.trend.PSARIndicator(high = self.inputData['high'], low = self.inputData['low'], close = self.inputData['close'], step = 0.02, max_step = 0.2).psar()
+            
+            if 'pSARClose' in self.indicatorList:
+                self.inputData['pSARClose'] = self.inputData['pSAR'] - self.inputData['close']
 
-        if 'DC' in self.extraIndicators:
+        if 'D_UC' in self.indicatorList and 'D_LC' in self.indicatorList:
             self.inputData['D_UC'], self.inputData['D_LC'] = [0] * len(self.inputData), [0] * len(self.inputData)
             DC_periods = 20
             for i in range(DC_periods, len(self.inputData)):
-                self.inputData['D_UC'].iloc[i-1] = max(self.inputData['high'].iloc[i-DC_periods:i])
-                self.inputData['D_LC'].iloc[i-1] = min(self.inputData['low'].iloc[i-DC_periods:i])
+                self.inputData['D_UC'].iloc[i] = max(self.inputData['high'].iloc[i-DC_periods+1:i+1])
+                self.inputData['D_LC'].iloc[i] = min(self.inputData['low'].iloc[i-DC_periods+1:i+1])
 
-        if 'BB' in self.extraIndicators:
+        if 'BBHigh' in self.indicatorList:
             self.inputData['BBHigh'] = ta.volatility.BollingerBands(self.inputData['close']).bollinger_hband()
-            self.inputData['BBLow'] = ta.volatility.BollingerBands(self.inputData['close']).bollinger_lband()
+            
+            if 'HBBH' in self.indicatorList:
+                self.inputData['HBBH'] = self.inputData['high'] - self.inputData['BBHigh']            
+
+        if 'BBLow' in self.indicatorList:
+            self.inputData['BBLow'] = ta.volatility.BollingerBands(self.inputData['close']).bollinger_lband()    
+
+            if 'LBBL' in self.indicatorList:
+                self.inputData['LBBL'] = self.inputData['low'] - self.inputData['BBLow']
+
+        if 'HO' in self.indicatorList:
+            self.inputData['HO'] = self.inputData['high'] - self.inputData['close']
+
+        if 'CL' in self.indicatorList:
+            self.inputData['CL'] = self.inputData['close'] - self.inputData['low']
+
+        if 'RSI' in self.indicatorList:
+            self.inputData['RSI'] = ta.momentum.RSIIndicator(self.inputData['close']).rsi()
 
         signalIdx = list(self.inputData.columns).index('Signal')
         firstCols = list(self.inputData.columns)[:signalIdx]
-        endCols = [list(self.inputData.columns)[signalIdx]]
-        colsOrder = firstCols + self.extraIndicators + endCols
+        colsOrder = firstCols + self.indicatorList + ['Signal']
 
         self.inputData = self.inputData[colsOrder]
 
@@ -74,7 +93,7 @@ class SignalAffirmerDL:
         rowMax = self.input_sequence[:, :, 0:signalInd].max(axis = 1)
         rowMin = self.input_sequence[:, :, 0:signalInd].min(axis = 1)
 
-        self.input_sequence_scaled = self.input_sequence
+        self.input_sequence_scaled = self.input_sequence.copy()
         self.input_sequence_scaled[:, :, 0:signalInd] = (self.input_sequence_scaled[:, :, 0:signalInd] - rowMin[:, np.newaxis]) / (rowMax[:, np.newaxis] - rowMin[:, np.newaxis])
         self.input_sequence_scaled = np.reshape(self.input_sequence_scaled, (1, self.input_sequence_scaled[-1].shape[0], self.input_sequence_scaled[-1].shape[1]))        
                     
@@ -93,7 +112,7 @@ class SignalAffirmerDL:
         if self.indicatorSignal != 0:
             self.add_indicator()
             
-            if self.extraIndicators is not None:
+            if self.indicatorList is not None:
                 self.add_extra_indicators()
             
             self.sequence_input()
