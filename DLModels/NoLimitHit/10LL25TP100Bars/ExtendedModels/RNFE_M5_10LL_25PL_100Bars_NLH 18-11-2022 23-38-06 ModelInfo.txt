@@ -1,0 +1,39 @@
+RNFE_M5_10LL_25PL_100Bars_NLH
+Architecture Info
+Model: "sequential"
+_________________________________________________________________
+ Layer (type)                Output Shape              Param #   
+=================================================================
+ dense (Dense)               (None, 10)                20490     
+                                                                 
+ dropout (Dropout)           (None, 10)                0         
+                                                                 
+ dense_1 (Dense)             (None, 10)                110       
+                                                                 
+ dropout_1 (Dropout)         (None, 10)                0         
+                                                                 
+ dense_2 (Dense)             (None, 10)                110       
+                                                                 
+ dropout_2 (Dropout)         (None, 10)                0         
+                                                                 
+ dense_3 (Dense)             (None, 3)                 33        
+                                                                 
+=================================================================
+Total params: 20,743
+Trainable params: 20,743
+Non-trainable params: 0
+_________________________________________________________________
+Accuracy: 0.2895
+Precision: 0.2895
+Recall: 0.2895
+Time Trained: 749.0s
+Trained on: EURUSD.a_M5_201709040000_202109031210NLH10SL_100Bars.csv
+Confusion Matrix 
+           Predicted -1  Predicted 0  Predicted 1
+Actual -1          9991         1761         1604
+Actual 0          31721        10297         5166
+Actual 1          10761         1922         1276
+Input Shape: (223496, 2048)
+Loss Functioncategorical_crossentropy
+Features: open, high, low, close, CCI, pSAR, D_UC, D_LC, BBHigh, BBLow, RSI, HO, CL, pSARClose, HBBH, LBBL
+Periods192
