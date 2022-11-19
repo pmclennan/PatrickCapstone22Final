@@ -1,0 +1,51 @@
+PE_M5_10LL_25PL_100Bars_NLH
+Architecture Info
+Model: "sequential"
+_________________________________________________________________
+ Layer (type)                Output Shape              Param #   
+=================================================================
+ dense (Dense)               (None, 128)               393344    
+                                                                 
+ dense_1 (Dense)             (None, 256)               33024     
+                                                                 
+ dropout (Dropout)           (None, 256)               0         
+                                                                 
+ dense_2 (Dense)             (None, 128)               32896     
+                                                                 
+ dropout_1 (Dropout)         (None, 128)               0         
+                                                                 
+ dense_3 (Dense)             (None, 64)                8256      
+                                                                 
+ dropout_2 (Dropout)         (None, 64)                0         
+                                                                 
+ dense_4 (Dense)             (None, 32)                2080      
+                                                                 
+ dropout_3 (Dropout)         (None, 32)                0         
+                                                                 
+ dense_5 (Dense)             (None, 16)                528       
+                                                                 
+ dropout_4 (Dropout)         (None, 16)                0         
+                                                                 
+ dense_6 (Dense)             (None, 10)                170       
+                                                                 
+ dense_7 (Dense)             (None, 3)                 33        
+                                                                 
+=================================================================
+Total params: 470,331
+Trainable params: 470,331
+Non-trainable params: 0
+_________________________________________________________________
+Accuracy: 0.6334
+Precision: 0.6334
+Recall: 0.6334
+Time Trained: 474.0s
+Trained on: EURUSD.a_M5_201709040000_202109031210NLH10SL_100Bars.csv
+Confusion Matrix 
+           Predicted -1  Predicted 0  Predicted 1
+Actual -1             0        13356            0
+Actual 0              0        47184            0
+Actual 1              0        13959            0
+Input Shape: (74499, 3072)
+Loss Functionw_categorical_crossentropy
+Features: open, high, low, close, CCI, pSAR, D_UC, D_LC, BBHigh, BBLow, RSI, HO, CL, pSARClose, HBBH, LBBL
+Periods192
