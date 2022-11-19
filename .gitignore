@@ -9,3 +9,8 @@ __pycache__
 *.pyc
 **.pyc
 .pyc
+\__pycache__\
+__pycache__/BacktestRunner.cpython-39.pyc
+__pycache__/signalHandler.cpython-39.pyc
+__pycache__/TradeSummary.cpython-39.pyc
+__pycache__/WeeklySummary.cpython-39.pyc
