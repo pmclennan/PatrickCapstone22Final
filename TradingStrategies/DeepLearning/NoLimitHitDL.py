@@ -86,7 +86,7 @@ class NoLimitHitDL:
 
         action = 0
 
-        prediction = self.model.predict(self.input_sequence_scaled)
+        prediction = self.model.predict(self.input_sequence_scaled, verbose = 0)
 
         action = np.argmax(prediction, axis = 1) - 1
 
