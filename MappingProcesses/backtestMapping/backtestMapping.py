@@ -21,7 +21,7 @@ def backtestMapping(historyData, tradeData):
     mappingData (pd.DataFrame): A dataframe of OHLC history + trade decision and mapping.
     """    
 
-    mappingData = historyData.drop(columns = ['signal', 'action', 'position', 'P/L', 'Total profit', 'Executed price', 'Take Profit', 'Stop Loss'])
+    mappingData = historyData.drop(columns = ['action', 'position', 'P/L', 'Total profit', 'Executed price', 'Take Profit', 'Stop Loss'])
     
     tradeData['CorrectSignal'] = [0] * len(tradeData)
     tradeData['CorrectSignal'].loc[tradeData['Trade P/L'] > 0] = 1
@@ -43,7 +43,11 @@ def backtestMapping(historyData, tradeData):
 
     return mappingData
 
-data_folder = os.path.join(os.getcwd(), "BacktestResults", "M5_2021-2022", "pSAR_291022-153220_EURUSD.a_M5__2021-10-14_to_2022-09-02_15Limit")
+##parentFolder = os.path.join(os.getcwd(), 'BacktestResults')
+parentFolder = "C:\\Users\\Patrick\\Documents\\UNI - USYD\\2022 - Capstone\\Final Repo\\Large Files - Final"
+
+subFolder = os.path.join('M1_2017-2021', 'BasicIndicators', "BollingerBands_011122-062248_EURUSD.a_M1__2017-09-04_to_2021-09-03_15Limit")
+data_folder = os.path.join(parentFolder, subFolder)
 history_filename = "History.csv"
 trade_filename = 'Trade_Summary.csv'
 history_dir = os.path.join(data_folder, history_filename)
@@ -54,7 +58,8 @@ tradeData = pd.read_csv(trade_dir)
 
 mappingData = backtestMapping(historyData, tradeData)
 
-export_folder = os.path.join(os.getcwd(), "MappingProcesses", "backtestMapping")
+#export_folder = os.path.join(os.getcwd(), "MappingProcesses", "backtestMapping", "MappedDatasets")
+export_folder = os.path.join(parentFolder, 'MappedDatasets')
 export_filename = data_folder.split("\\")[-1] + "_Mapped.csv"
 export_dir = os.path.join(export_folder, export_filename)
 

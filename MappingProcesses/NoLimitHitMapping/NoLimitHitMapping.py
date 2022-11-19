@@ -100,8 +100,8 @@ data_filename = "EURUSD.a_M5_201709040000_202109031210.csv"
 data_dir = os.path.join(data_folder, data_filename)
 data = MT5SymbolsDataReader(data_dir)
 
-limit = 20/10000
-numBars = 200
+limit = 10/10000
+numBars = 100
 mappedDat = NoLimitHitMapping(data, limit, numBars)
 
 ##Add indicators for features - top from backtests; CCI, pSAR, DC (combined with CCI) and Bollinger Bands
@@ -122,11 +122,22 @@ print("Adding BB")
 mappedDat['BBHigh'] = ta.volatility.BollingerBands(mappedDat['close']).bollinger_hband()
 mappedDat['BBLow'] = ta.volatility.BollingerBands(mappedDat['close']).bollinger_lband()
 
+print("Adding RSI")
+mappedDat['RSI'] = ta.momentum.RSIIndicator(mappedDat['close']).rsi()
+
 #Clean NAs from Indicators
+
+idxAdj = len(mappedDat[mappedDat.isna().any(axis = 1)]) + 1
 mappedDat = mappedDat[~mappedDat.isna().any(axis = 1)].reset_index(drop = True)
-exportName = data_filename.split(".csv")[0] + "NLH20_200.csv"
+
+mappedDat.loc[mappedDat['shortLossHit'] != "", 'shortLossHit'] = mappedDat.loc[mappedDat['shortLossHit'] != "", 'shortLossHit'] - idxAdj
+mappedDat.loc[mappedDat['shortExitIndex'] != "", 'shortExitIndex']= mappedDat.loc[mappedDat['shortExitIndex'] != "", 'shortExitIndex'] - idxAdj
+mappedDat.loc[mappedDat['longLossHit'] != "", 'longLossHit'] = mappedDat.loc[mappedDat['longLossHit'] != "", 'longLossHit'] - idxAdj
+mappedDat.loc[mappedDat['longExitIndex'] != "", 'longExitIndex'] = mappedDat.loc[mappedDat['longExitIndex'] != "", 'longExitIndex'] - idxAdj
+
+exportName = data_filename.split(".csv")[0] + "NLH" + str(int(limit * 10000)) + "SL_" + str(numBars) + "Bars.csv"
 exportDir = os.path.join(os.getcwd(), "MappingProcesses", "NoLimitHitMapping", "MappedDatasets", exportName)
 
-mappedDat.to_csv(exportDir, index = False)
+mappedDat.to_csv(exportDir)
 
 print("Complete")
