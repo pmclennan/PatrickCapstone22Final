@@ -1,0 +1,41 @@
+RNFE_M5_pSAR_SignalAffirmer
+Architecture Info
+Model: "sequential_1"
+_________________________________________________________________
+ Layer (type)                Output Shape              Param #   
+=================================================================
+ dense_5 (Dense)             (None, 64)                131136    
+                                                                 
+ dropout_3 (Dropout)         (None, 64)                0         
+                                                                 
+ dense_6 (Dense)             (None, 128)               8320      
+                                                                 
+ dropout_4 (Dropout)         (None, 128)               0         
+                                                                 
+ dense_7 (Dense)             (None, 64)                8256      
+                                                                 
+ dropout_5 (Dropout)         (None, 64)                0         
+                                                                 
+ dense_8 (Dense)             (None, 10)                650       
+                                                                 
+ dense_9 (Dense)             (None, 1)                 11        
+                                                                 
+=================================================================
+Total params: 148,373
+Trainable params: 148,373
+Non-trainable params: 0
+_________________________________________________________________
+Accuracy: 0.2662
+Precision: 0.2662
+Recall: 1.0
+Time Trained: 13.0s
+Trained on: pSAR_301022-143321_EURUSD.a_M5__2017-09-04_to_2021-09-03_15Limit_MappedWIndicators.csv
+Incorrect Trade Reduction: 0.0%
+Correct Trade Reduction: 0.0%
+Confusion Matrix 
+          Predicted 0  Predicted 1
+Actual 0            0         2602
+Actual 1            0          944
+Input Shape: (10639, 2048)
+Features: open, high, low, close, pSAR, CCI, D_UC, D_LC, BBHigh, BBLow, RSI, signal
+Periods256
