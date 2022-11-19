@@ -1,0 +1,41 @@
+PE_M5_CCI_SignalAffirmer
+Architecture Info
+Model: "sequential"
+_________________________________________________________________
+ Layer (type)                Output Shape              Param #   
+=================================================================
+ dense (Dense)               (None, 64)                196672    
+                                                                 
+ dropout (Dropout)           (None, 64)                0         
+                                                                 
+ dense_1 (Dense)             (None, 128)               8320      
+                                                                 
+ dropout_1 (Dropout)         (None, 128)               0         
+                                                                 
+ dense_2 (Dense)             (None, 64)                8256      
+                                                                 
+ dropout_2 (Dropout)         (None, 64)                0         
+                                                                 
+ dense_3 (Dense)             (None, 10)                650       
+                                                                 
+ dense_4 (Dense)             (None, 1)                 11        
+                                                                 
+=================================================================
+Total params: 213,909
+Trainable params: 213,909
+Non-trainable params: 0
+_________________________________________________________________
+Accuracy: 0.6085
+Precision: 0.2771
+Recall: 0.3172
+Time Trained: 15.0s
+Trained on: CCI_301022-123427_EURUSD.a_M5__2017-09-04_to_2021-09-03_15Limit_MappedWIndicators2.csv
+Incorrect Trade Reduction: 71.04%
+Correct Trade Reduction: 68.28%
+Confusion Matrix 
+          Predicted 0  Predicted 1
+Actual 0         1683          686
+Actual 1          566          263
+Input Shape: (3198, 3072)
+Features: open, high, low, close, CCI, pSAR, D_UC, D_LC, BBHigh, BBLow, RSI, signal
+Periods256
