@@ -1,0 +1,41 @@
+PE_M5_CCI_SignalAffirmer
+Architecture Info
+Model: "sequential_4"
+_________________________________________________________________
+ Layer (type)                Output Shape              Param #   
+=================================================================
+ dense_22 (Dense)            (None, 64)                196672    
+                                                                 
+ dropout_21 (Dropout)        (None, 64)                0         
+                                                                 
+ dense_23 (Dense)            (None, 128)               8320      
+                                                                 
+ dropout_22 (Dropout)        (None, 128)               0         
+                                                                 
+ dense_24 (Dense)            (None, 64)                8256      
+                                                                 
+ dropout_23 (Dropout)        (None, 64)                0         
+                                                                 
+ dense_25 (Dense)            (None, 10)                650       
+                                                                 
+ dense_26 (Dense)            (None, 1)                 11        
+                                                                 
+=================================================================
+Total params: 213,909
+Trainable params: 213,909
+Non-trainable params: 0
+_________________________________________________________________
+Accuracy: 0.5644
+Precision: 0.2762
+Recall: 0.4198
+Time Trained: 14.0s
+Trained on: CCI_301022-123427_EURUSD.a_M5__2017-09-04_to_2021-09-03_15Limit_MappedWIndicators2.csv
+Incorrect Trade Reduction: 61.5%
+Correct Trade Reduction: 58.02%
+Confusion Matrix 
+          Predicted 0  Predicted 1
+Actual 0         1457          912
+Actual 1          481          348
+Input Shape: (3198, 3072)
+Features: open, high, low, close, CCI, pSAR, D_UC, D_LC, BBHigh, BBLow, RSI, signal
+Periods256

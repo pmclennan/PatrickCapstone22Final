@@ -1,0 +1,37 @@
+LSTM_PE_M5_CCI_SignalAffirmer
+Architecture Info
+Model: "sequential"
+_________________________________________________________________
+ Layer (type)                Output Shape              Param #   
+=================================================================
+ lstm (LSTM)                 (None, 64)                19712     
+                                                                 
+ dense_2 (Dense)             (None, 32)                2080      
+                                                                 
+ dropout_9 (Dropout)         (None, 32)                0         
+                                                                 
+ dense_3 (Dense)             (None, 10)                330       
+                                                                 
+ dropout_10 (Dropout)        (None, 10)                0         
+                                                                 
+ dense_4 (Dense)             (None, 1)                 11        
+                                                                 
+=================================================================
+Total params: 22,133
+Trainable params: 22,133
+Non-trainable params: 0
+_________________________________________________________________
+Accuracy: 0.6523
+Precision: 0.3131
+Recall: 0.2859
+Time Trained: 38.0s
+Trained on: CCI_301022-123427_EURUSD.a_M5__2017-09-04_to_2021-09-03_15Limit_MappedWIndicators2.csv
+Incorrect Trade Reduction: 78.05%
+Correct Trade Reduction: 71.41%
+Confusion Matrix 
+          Predicted 0  Predicted 1
+Actual 0         1849          520
+Actual 1          592          237
+Train Input Shape: (3198, 256, 12)
+Features: open, high, low, close, CCI, pSAR, D_UC, D_LC, BBHigh, BBLow, RSI, signal
+Periods256
