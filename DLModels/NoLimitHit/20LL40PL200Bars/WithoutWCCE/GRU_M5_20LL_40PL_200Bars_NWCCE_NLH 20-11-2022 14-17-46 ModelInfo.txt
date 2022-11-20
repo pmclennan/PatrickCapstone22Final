@@ -1,0 +1,32 @@
+GRU_M5_20LL_40PL_200Bars_NLH
+Architecture Info
+Model: "sequential_3"
+_________________________________________________________________
+ Layer (type)                Output Shape              Param #   
+=================================================================
+ gru_1 (GRU)                 (None, 120, 32)           3840      
+                                                                 
+ time_distributed_3 (TimeDis  (None, 120, 32)          1056      
+ tributed)                                                       
+                                                                 
+ flatten_3 (Flatten)         (None, 3840)              0         
+                                                                 
+ dense_7 (Dense)             (None, 3)                 11523     
+                                                                 
+=================================================================
+Total params: 16,419
+Trainable params: 16,419
+Non-trainable params: 0
+_________________________________________________________________
+Accuracy: 0.365
+Precision: 0.365
+Recall: 0.365
+Time Trained: 194.0s
+Trained on: EURUSD.a_M5_201709040000_202109031210NLH20SL_200Bars.csv
+Confusion Matrix 
+           Predicted -1  Predicted 0  Predicted 1
+Actual -1          3292         5449         5512
+Actual 0          10259        17656        17311
+Actual 1           3423         5368         6247
+Sequence Length: 120
+Features: open, high, low, close, HO, CL
