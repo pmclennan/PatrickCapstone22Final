@@ -1,0 +1,37 @@
+LSTM_PE_M1_BB_SignalAffirmer
+Architecture Info
+Model: "sequential_2"
+_________________________________________________________________
+ Layer (type)                Output Shape              Param #   
+=================================================================
+ lstm (LSTM)                 (None, 64)                19712     
+                                                                 
+ dense_14 (Dense)            (None, 32)                2080      
+                                                                 
+ dropout_24 (Dropout)        (None, 32)                0         
+                                                                 
+ dense_15 (Dense)            (None, 10)                330       
+                                                                 
+ dropout_25 (Dropout)        (None, 10)                0         
+                                                                 
+ dense_16 (Dense)            (None, 1)                 11        
+                                                                 
+=================================================================
+Total params: 22,133
+Trainable params: 22,133
+Non-trainable params: 0
+_________________________________________________________________
+Accuracy: 0.569
+Precision: 0.242
+Recall: 0.4541
+Time Trained: 144.0s
+Trained on: BollingerBands_011122-062248_EURUSD.a_M1__2017-09-04_to_2021-09-03_15Limit_MappedWIndicators.csv
+Incorrect Trade Reduction: 60.12%
+Correct Trade Reduction: 54.59%
+Confusion Matrix 
+          Predicted 0  Predicted 1
+Actual 0         5681         3769
+Actual 1         1446         1203
+Train Input Shape: (12099, 256, 12)
+Features: open, high, low, close, BBHigh, BBLow, CCI, pSAR, D_UC, D_LC, RSI, signal
+Periods256
