@@ -1,0 +1,129 @@
+PE_TFR_M5_20LL_30PL_50Bars_NLH
+Architecture Info
+Model: "model_1"
+__________________________________________________________________________________________________
+ Layer (type)                   Output Shape         Param #     Connected to                     
+==================================================================================================
+ input_3 (InputLayer)           [(None, 192, 16)]    0           []                               
+                                                                                                  
+ layer_normalization_8 (LayerNo  (None, 192, 16)     32          ['input_3[0][0]']                
+ rmalization)                                                                                     
+                                                                                                  
+ multi_head_attention_4 (MultiH  (None, 192, 16)     34320       ['layer_normalization_8[0][0]',  
+ eadAttention)                                                    'layer_normalization_8[0][0]']  
+                                                                                                  
+ dropout_12 (Dropout)           (None, 192, 16)      0           ['multi_head_attention_4[0][0]'] 
+                                                                                                  
+ tf.__operators__.add_8 (TFOpLa  (None, 192, 16)     0           ['dropout_12[0][0]',             
+ mbda)                                                            'input_3[0][0]']                
+                                                                                                  
+ layer_normalization_9 (LayerNo  (None, 192, 16)     32          ['tf.__operators__.add_8[0][0]'] 
+ rmalization)                                                                                     
+                                                                                                  
+ conv1d_8 (Conv1D)              (None, 192, 4)       68          ['layer_normalization_9[0][0]']  
+                                                                                                  
+ dropout_13 (Dropout)           (None, 192, 4)       0           ['conv1d_8[0][0]']               
+                                                                                                  
+ conv1d_9 (Conv1D)              (None, 192, 16)      80          ['dropout_13[0][0]']             
+                                                                                                  
+ tf.__operators__.add_9 (TFOpLa  (None, 192, 16)     0           ['conv1d_9[0][0]',               
+ mbda)                                                            'tf.__operators__.add_8[0][0]'] 
+                                                                                                  
+ layer_normalization_10 (LayerN  (None, 192, 16)     32          ['tf.__operators__.add_9[0][0]'] 
+ ormalization)                                                                                    
+                                                                                                  
+ multi_head_attention_5 (MultiH  (None, 192, 16)     34320       ['layer_normalization_10[0][0]', 
+ eadAttention)                                                    'layer_normalization_10[0][0]'] 
+                                                                                                  
+ dropout_14 (Dropout)           (None, 192, 16)      0           ['multi_head_attention_5[0][0]'] 
+                                                                                                  
+ tf.__operators__.add_10 (TFOpL  (None, 192, 16)     0           ['dropout_14[0][0]',             
+ ambda)                                                           'tf.__operators__.add_9[0][0]'] 
+                                                                                                  
+ layer_normalization_11 (LayerN  (None, 192, 16)     32          ['tf.__operators__.add_10[0][0]']
+ ormalization)                                                                                    
+                                                                                                  
+ conv1d_10 (Conv1D)             (None, 192, 4)       68          ['layer_normalization_11[0][0]'] 
+                                                                                                  
+ dropout_15 (Dropout)           (None, 192, 4)       0           ['conv1d_10[0][0]']              
+                                                                                                  
+ conv1d_11 (Conv1D)             (None, 192, 16)      80          ['dropout_15[0][0]']             
+                                                                                                  
+ tf.__operators__.add_11 (TFOpL  (None, 192, 16)     0           ['conv1d_11[0][0]',              
+ ambda)                                                           'tf.__operators__.add_10[0][0]']
+                                                                                                  
+ layer_normalization_12 (LayerN  (None, 192, 16)     32          ['tf.__operators__.add_11[0][0]']
+ ormalization)                                                                                    
+                                                                                                  
+ multi_head_attention_6 (MultiH  (None, 192, 16)     34320       ['layer_normalization_12[0][0]', 
+ eadAttention)                                                    'layer_normalization_12[0][0]'] 
+                                                                                                  
+ dropout_16 (Dropout)           (None, 192, 16)      0           ['multi_head_attention_6[0][0]'] 
+                                                                                                  
+ tf.__operators__.add_12 (TFOpL  (None, 192, 16)     0           ['dropout_16[0][0]',             
+ ambda)                                                           'tf.__operators__.add_11[0][0]']
+                                                                                                  
+ layer_normalization_13 (LayerN  (None, 192, 16)     32          ['tf.__operators__.add_12[0][0]']
+ ormalization)                                                                                    
+                                                                                                  
+ conv1d_12 (Conv1D)             (None, 192, 4)       68          ['layer_normalization_13[0][0]'] 
+                                                                                                  
+ dropout_17 (Dropout)           (None, 192, 4)       0           ['conv1d_12[0][0]']              
+                                                                                                  
+ conv1d_13 (Conv1D)             (None, 192, 16)      80          ['dropout_17[0][0]']             
+                                                                                                  
+ tf.__operators__.add_13 (TFOpL  (None, 192, 16)     0           ['conv1d_13[0][0]',              
+ ambda)                                                           'tf.__operators__.add_12[0][0]']
+                                                                                                  
+ layer_normalization_14 (LayerN  (None, 192, 16)     32          ['tf.__operators__.add_13[0][0]']
+ ormalization)                                                                                    
+                                                                                                  
+ multi_head_attention_7 (MultiH  (None, 192, 16)     34320       ['layer_normalization_14[0][0]', 
+ eadAttention)                                                    'layer_normalization_14[0][0]'] 
+                                                                                                  
+ dropout_18 (Dropout)           (None, 192, 16)      0           ['multi_head_attention_7[0][0]'] 
+                                                                                                  
+ tf.__operators__.add_14 (TFOpL  (None, 192, 16)     0           ['dropout_18[0][0]',             
+ ambda)                                                           'tf.__operators__.add_13[0][0]']
+                                                                                                  
+ layer_normalization_15 (LayerN  (None, 192, 16)     32          ['tf.__operators__.add_14[0][0]']
+ ormalization)                                                                                    
+                                                                                                  
+ conv1d_14 (Conv1D)             (None, 192, 4)       68          ['layer_normalization_15[0][0]'] 
+                                                                                                  
+ dropout_19 (Dropout)           (None, 192, 4)       0           ['conv1d_14[0][0]']              
+                                                                                                  
+ conv1d_15 (Conv1D)             (None, 192, 16)      80          ['dropout_19[0][0]']             
+                                                                                                  
+ tf.__operators__.add_15 (TFOpL  (None, 192, 16)     0           ['conv1d_15[0][0]',              
+ ambda)                                                           'tf.__operators__.add_14[0][0]']
+                                                                                                  
+ global_average_pooling1d_1 (Gl  (None, 192)         0           ['tf.__operators__.add_15[0][0]']
+ obalAveragePooling1D)                                                                            
+                                                                                                  
+ dense_6 (Dense)                (None, 128)          24704       ['global_average_pooling1d_1[0][0
+                                                                 ]']                              
+                                                                                                  
+ dropout_20 (Dropout)           (None, 128)          0           ['dense_6[0][0]']                
+                                                                                                  
+ dense_7 (Dense)                (None, 3)            387         ['dropout_20[0][0]']             
+                                                                                                  
+==================================================================================================
+Total params: 163,219
+Trainable params: 163,219
+Non-trainable params: 0
+__________________________________________________________________________________________________
+Accuracy: 0.3268
+Precision: 0.3268
+Recall: 0.3268
+Time Trained: 1789.0s
+Trained on: EURUSD.a_M5_201709040000_202109031210NLH10SL_100Bars.csv
+Confusion Matrix 
+           Predicted -1  Predicted 0  Predicted 1
+Actual -1          4153         2425         3443
+Actual 0          18514        16581        19204
+Actual 1           4652         1914         3613
+Input Shape: (223496, 192, 16)
+Loss Functioncategorical_crossentropy
+Features: open, high, low, close, CCI, pSAR, D_UC, D_LC, BBHigh, BBLow, RSI, HO, CL, pSARClose, HBBH, LBBL
+Periods192
