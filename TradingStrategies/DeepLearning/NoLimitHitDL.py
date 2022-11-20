@@ -45,8 +45,8 @@ class NoLimitHitDL:
             self.data['D_UC'], self.data['D_LC'] = [0] * len(self.data), [0] * len(self.data)
             DC_periods = 20
             for i in range(DC_periods, len(self.data)):
-                self.data['D_UC'].iloc[i-1] = max(self.data['high'].iloc[i-DC_periods:i])
-                self.data['D_LC'].iloc[i-1] = min(self.data['low'].iloc[i-DC_periods:i])
+                self.data['D_UC'].iloc[i] = max(self.data['high'].iloc[i-DC_periods+1:i+1])
+                self.data['D_LC'].iloc[i] = min(self.data['low'].iloc[i-DC_periods+1:i+1])
 
         if 'BBHigh' in self.indicatorList:
             self.data['BBHigh'] = ta.volatility.BollingerBands(self.data['close']).bollinger_hband()
