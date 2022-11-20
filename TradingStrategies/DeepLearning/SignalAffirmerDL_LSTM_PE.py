@@ -13,15 +13,16 @@ from keras.layers import Embedding
 from keras.layers import Layer
 
 class SignalAffirmerDL_LSTM_PE(SignalAffirmerDL_PE):
-    def __init__(self, model, indicatorList):
-        super().__init__(model, indicatorList)
-        self.Name = model.layers[0].__class__.__name__ + "_PE_SignalAffirmerDL"   
+    def __init__(self, model, indicatorStrategy, indicatorList = None):
+        super().__init__(model, indicatorStrategy, indicatorList)
+        self.Name = model.layers[0].__class__.__name__ + "_" + indicatorStrategy().Name + "_PE_SignalAffirmerDL"   
         #Need to adjust sequence length inference from model shape as this is based on the final deep model
         #Original sequence length should be input shape / features, so indicator list + 4 for OHLC
         self.sequence_length = int(self.model.input_shape[1])
+        self.numFeatures = int(self.model.input_shape[2])
 
     def reshape_sequence(self):
-        self.input_sequence_scaled = tf.reshape(self.input_sequence_scaled, (self.input_sequence_scaled.shape[0], self.sequence_length, (len(self.indicatorList) + 4)))
+        self.input_sequence_scaled = tf.reshape(self.input_sequence_scaled, (self.input_sequence_scaled.shape[0], self.sequence_length, self.numFeatures))
 
     def run(self, data):        
         self.add_data(data)
