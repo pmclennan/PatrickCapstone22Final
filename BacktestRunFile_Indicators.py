@@ -27,6 +27,7 @@ from TradingStrategies.Combination.three_rsp import ThreeRSP
 from TradingStrategies.Combination.MACD_Stochastic_Crossover import MACDStochasticCrossover
 from TradingStrategies.Combination.DonchianChannel_CCI import DC_CCI
 from TradingStrategies.Combination.MovingAverage_BollingerBands import MA_BB
+from TradingStrategies.Combination.CCI_pSAR_DC_BB import CCI_pSAR_DC_BB
 
 ##Patterns
 #TODO
@@ -38,25 +39,25 @@ from TradingStrategies.Combination.MovingAverage_BollingerBands import MA_BB
 
 ##Data Read setup - method 1
 tz = pytz.utc
-startDate = datetime.datetime(2021, 10, 13, tzinfo = tz) #Start Date - adjust as necessary
-endDate = datetime.datetime(2022, 9, 3, tzinfo = tz) #End Date - adjust as necessary
-dataFolder = os.path.join(os.getcwd(), 'Datasets', 'OHLC_BidAsk')
-dataFilename = "EURUSD.a_M5_14102021_02092022.csv"
+startDate = datetime.datetime(2017, 9, 3, tzinfo = tz) #Start Date - adjust as necessary
+endDate = datetime.datetime(2021, 9, 4, tzinfo = tz) #End Date - adjust as necessary
+dataFolder = os.path.join(os.getcwd(), 'Datasets', 'OHLC_Only')
+dataFilename = "EURUSD.a_M5_201709040000_202109031210.csv"
 dataDir = os.path.join(dataFolder, dataFilename)
 timeCols = ['<DATE>', '<TIME>'] #Required from knowledge of the dataset. Another example (From MT5 export) is ['DATE', 'TIME']
 delimitter = "\t" #Required from knowledge of the dataset. Another example could be "\t"
 
-
+ 
 ##Data read - method 2
 #data = pd.read_csv(yourDataDir)
 #Other data formatting code.
 
 ##Remaining Static inputs
-inputRows = 250
+inputRows = 50
 #limits = [15]
 stop_loss = -15
-take_profit = 40
-strategies = [MA_BB]
+take_profit = 30
+strategies = [CCI_pSAR_DC_BB]
 one_pip = 0.0001
 guaranteed_sl = False
 broker_cost = 2*one_pip
@@ -80,7 +81,10 @@ for strategy in strategies:
     #Backtest.inputDataAndInfo(data, "EURUSD", "M1") #Alternative data input example if using a 1 minute EURUSD set.
     Backtest.loadBroker(stop_loss, take_profit, guaranteed_sl, broker_cost)
     Backtest.runBacktest(runType)
-    Backtest.runReports(str(stop_loss) + "SL" + str(take_profit) + "TP")
+    if abs(stop_loss) == abs(take_profit):
+        Backtest.runReports(str(int(abs(stop_loss)/one_pip)) + "Limit")
+    else:
+        Backtest.runReports(str(int(abs(stop_loss)/one_pip)) + "SL" + str(int(take_profit/one_pip)) + "TP")
     print("Total PnL: {}".format(round(Backtest.broker.total_profit, 6)))
 
 print("Backtests completed")
