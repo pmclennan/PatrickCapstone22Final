@@ -63,13 +63,14 @@ class CCI_pSAR_DC_BB:
         return action
 
     def addIndicatorDf(self):
-        self.indicatorDf = self.df[['time', 'CCI', 'D_UC', 'D_LC', 'D_MC', 'SMA']]
+        self.indicatorDf = self.df[['time', 'CCI', 'pSAR', 'D_UC', 'D_LC', 'BBLow', 'BBHigh']]
 
     def run(self, data):
         self.addData(data)
         self.add_CCI()
+        self.add_pSAR()
         self.add_DC()
-        self.add_SMA()
+        self.add_BB()        
         self.addIndicatorDf()
         
         return self.determine_signal(), self.indicatorDf
